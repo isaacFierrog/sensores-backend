@@ -21,23 +21,18 @@ class ModuloViewSet(ModelViewSet):
     
     @action(detail=True, methods=['post'], url_path='datos')
     def guardar_datos(self, request, pk=None):
-        print(request.data)
         valores = request.data.get('valores')
         modulo = self.get_queryset().filter(id=pk).first()
         sensores = modulo.sensores.all()
         datos = []
         
-        for valor in valores:
-            print('EL SENSOR')
-            print(sensores.filter(clave=valor['sensor']).first())
-            
+        for valor in valores:            
             dato = Dato(
                 sensor=sensores.filter(clave=valor['sensor']).first(),
                 estado=valor['estado'],
                 valor=valor['valor']
             )
             datos.append(dato)
-            print(datos)
         
         Dato.objects.bulk_create(datos)
          
