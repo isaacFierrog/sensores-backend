@@ -35,10 +35,19 @@ class Login(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
         correo = request.data.get('correo', '')
         password = request.data.get('password', '')
+        
+        print('CORREO')
+        print(correo)
+        print('PASSWORD')
+        print(password)
+        
         usuario = authenticate(
             username=correo,
             password=password
         )
+        
+        print('Usuario autenticado')
+        print(usuario)
         
         if usuario:
             login_serializer = self.serializer_class(
