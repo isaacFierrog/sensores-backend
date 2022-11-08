@@ -19,6 +19,10 @@ class UsuarioViewSet(ModelViewSet):
     serializer_class = UsuarioSerializer
     queryset = Usuario.objects.all()
     
+    def list(self, request, *args, **kwargs):
+        print(request.headers.get('Authorization'))
+        return super().list(request, *args, **kwargs)
+    
     def create(self, request, *args, **kwargs):
         usuario_serializer = self.get_serializer(data=request.data)
         
