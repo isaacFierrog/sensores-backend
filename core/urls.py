@@ -16,6 +16,7 @@ urlpatterns = [
     # path('api/login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/', include('apps.usuario.api.routers')),
     path('api/', include('apps.modulo.routers')),
+    path('api/', include('apps.modulo.urls')),
     path('api/', include('apps.configuracion.routers')),
     path('api/', include('apps.dato.routers')),
     re_path(r'^.*$', TemplateView.as_view(template_name='index.html'))

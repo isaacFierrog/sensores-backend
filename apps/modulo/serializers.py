@@ -20,9 +20,14 @@ class ModuloSerializer(serializers.ModelSerializer):
             sensor_serializer = SensorSerializer(sensor).data
             sensor_serializer['datos'] = DatoSerializer(sensor.datos.all(), many=True).data
             sensores.append(sensor_serializer)
+        
+        print('SENSORES')
+        print(sensores)
             
         obj = super().to_representation(instance)
         obj['sensores'] = sensores
+        
+        
         return obj
         
     def create(self, validated_data):
