@@ -18,11 +18,11 @@ class ModuloSerializer(serializers.ModelSerializer):
         sensores = []
         for sensor in listado_sensores:
             sensor_serializer = SensorSerializer(sensor).data
-            sensor_serializer['datos'] = DatoSerializer(sensor.datos.all(), many=True).data
+            sensor_serializer['datos'] = DatoSerializer(
+                sensor.datos.all().order_by('-id'), 
+                many=True
+            ).data
             sensores.append(sensor_serializer)
-        
-        print('SENSORES')
-        print(sensores)
             
         obj = super().to_representation(instance)
         obj['sensores'] = sensores
