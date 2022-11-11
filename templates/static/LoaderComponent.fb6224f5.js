@@ -1,5 +1,0 @@
-<<<<<<<< HEAD:templates/static/LoaderComponent.57e9dc2a.js
-import{_ as d,o as s,c,p as t,e as _,f as e}from"./index.b95d0abd.js";const i={},a=o=>(t("data-v-8cb63395"),o=o(),_(),o),n={class:"fondo"},v=a(()=>e("div",{class:"lds-spinner"},[e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div")],-1)),p=[v];function r(o,l){return s(),c("div",n,p)}const h=d(i,[["render",r],["__scopeId","data-v-8cb63395"]]);export{h as default};
-========
-import{_ as d,o as s,c,p as t,e as _,f as e}from"./index.fd997aa7.js";const i={},a=o=>(t("data-v-8cb63395"),o=o(),_(),o),n={class:"fondo"},v=a(()=>e("div",{class:"lds-spinner"},[e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div"),e("div")],-1)),p=[v];function r(o,l){return s(),c("div",n,p)}const h=d(i,[["render",r],["__scopeId","data-v-8cb63395"]]);export{h as default};
->>>>>>>> da4f03d66506e1569a7cc27650d4ee3e843b0d99:templates/static/LoaderComponent.fb6224f5.js

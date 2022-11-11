@@ -1,5 +1,0 @@
-<<<<<<<< HEAD:templates/static/Navbar.d3f5593b.js
-import{_ as o,r as _,o as n,c,b as a,w as s,j as t}from"./index.b95d0abd.js";const r={data(){return{}}},d={class:"nav"},i=t("Modulos"),l=t("Usuarios");function u(p,v,m,f,k,x){const e=_("RouterLink");return n(),c("div",d,[a(e,{class:"nav__link",to:{name:"modulos-listar"}},{default:s(()=>[i]),_:1}),a(e,{class:"nav__link",to:{name:"usuarios-listar"}},{default:s(()=>[l]),_:1})])}const N=o(r,[["render",u],["__scopeId","data-v-2e83aa54"]]);export{N as default};
-========
-import{_ as o,r as _,o as n,c,b as a,w as s,j as t}from"./index.fd997aa7.js";const r={data(){return{}}},d={class:"nav"},i=t("Modulos"),l=t("Usuarios");function u(p,v,m,f,k,x){const e=_("RouterLink");return n(),c("div",d,[a(e,{class:"nav__link",to:{name:"modulos-listar"}},{default:s(()=>[i]),_:1}),a(e,{class:"nav__link",to:{name:"usuarios-listar"}},{default:s(()=>[l]),_:1})])}const N=o(r,[["render",u],["__scopeId","data-v-2e83aa54"]]);export{N as default};
->>>>>>>> da4f03d66506e1569a7cc27650d4ee3e843b0d99:templates/static/Navbar.f23db7ca.js
