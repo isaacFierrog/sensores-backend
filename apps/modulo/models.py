@@ -1,7 +1,8 @@
 from django.db import models
+from apps.general.models import ModeloBase
 
 
-class Modulo(models.Model):
+class Modulo(ModeloBase):
     MINAS = (
         ('HERMOSILLO', 'HERMOSILLO'),
         ('CANANEA', 'CANANEA')

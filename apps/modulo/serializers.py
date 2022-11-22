@@ -11,7 +11,11 @@ class ModuloSerializer(serializers.ModelSerializer):
     class Meta:
         model = Modulo
         fields = '__all__'
-        read_only_fields = ('id',)
+        read_only_fields = (
+            'id',
+            'fecha_creacion',
+            'fecha_edicion'
+        )
         
     def to_representation(self, instance):
         listado_sensores = instance.sensores.all()
@@ -31,15 +35,14 @@ class ModuloSerializer(serializers.ModelSerializer):
         return obj
         
     def create(self, validated_data):
-        sensores = None
-        if validated_data.get('sensores'):
-            sensores = validated_data.pop('sensores')
-            
+        sensores = validated_data.pop('sensores') if validated_data.get('sensores') else None
         modulo = Modulo.objects.create(**validated_data)
+        
         if sensores:
             Sensor.objects.bulk_create(
                 [Sensor(modulo=modulo, **sensor) for sensor in sensores]
             )
+        
         return modulo
     
     def update(self, instance, validated_data):

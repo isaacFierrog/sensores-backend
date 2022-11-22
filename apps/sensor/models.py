@@ -1,8 +1,9 @@
 from pyexpat import model
 from django.db import models
+from apps.general.models import ModeloBase
 
-# Create your models here.
-class Sensor(models.Model):
+
+class Sensor(ModeloBase):
     modulo = models.ForeignKey(
         'modulo.Modulo',
         on_delete=models.CASCADE,

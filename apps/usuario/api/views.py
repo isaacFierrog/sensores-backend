@@ -1,18 +1,12 @@
-from datetime import datetime
-from django.contrib.sessions.models import Session
 from django.contrib.auth import authenticate
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.authtoken.models import Token
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import status
 from apps.usuario.models import Usuario
-from apps.usuario.api.serializers import UsuarioSerializer, UsuarioTokenSerializer, TokenSerializer
-from apps.usuario.authentication_mixin import Authentication
+from apps.usuario.api.serializers import UsuarioSerializer, TokenSerializer
 
 
 class UsuarioViewSet(ModelViewSet):
@@ -39,28 +33,17 @@ class Login(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
         correo = request.data.get('correo', '')
         password = request.data.get('password', '')
-        
-        print('CORREO')
-        print(correo)
-        print('PASSWORD')
-        print(password)
-        
         usuario = authenticate(
             username=correo,
             password=password
         )
         
-        print('Usuario autenticado')
-        print(usuario)
-        
         if usuario:
-            login_serializer = self.serializer_class(
-                data=request.data
-            )
+            login_serializer = self.serializer_class(data=request.data)
             if login_serializer.is_valid():
                 usuario_serializer = UsuarioSerializer(usuario)
                 return Response({
-                    'token': login_serializer.validated_data['access'],
+                    'access': login_serializer.validated_data['access'],
                     'refresh': login_serializer.validated_data['refresh'],
                     'usuario': usuario_serializer.data,
                     'mensaje': 'Inicio de sesion exitoso'
@@ -69,8 +52,8 @@ class Login(TokenObtainPairView):
                 'error': 'Datos incorrectos'
             }, status=status.HTTP_400_BAD_REQUEST)
         return Response({
-                'error': 'Datos incorrectos'
-            }, status=status.HTTP_400_BAD_REQUEST)
+            'error': 'Datos incorrectos'
+        }, status=status.HTTP_400_BAD_REQUEST)
         
         
 class Logout(GenericAPIView):

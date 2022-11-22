@@ -1,7 +1,8 @@
 from django.db import models
+from apps.general.models import ModeloBase
 
 
-class Dato(models.Model):
+class Dato(ModeloBase):
     sensor = models.ForeignKey(
         'sensor.Sensor',
         on_delete=models.CASCADE,
