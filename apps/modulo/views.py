@@ -46,6 +46,8 @@ class VistaListApiView(CreateAPIView):
         sensores = modulo.sensores.all()
         datos = []
         
+        print('Que pedo razitas')
+        
         for valor in valores:            
             dato = Dato(
                 sensor=sensores.filter(clave=valor['sensor']).first(),

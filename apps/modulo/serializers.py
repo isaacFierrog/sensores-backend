@@ -35,7 +35,7 @@ class ModuloSerializer(serializers.ModelSerializer):
         return obj
         
     def create(self, validated_data):
-        sensores = validated_data.pop('sensores') if validated_data.get('sensores') else None
+        sensores = validated_data.pop('sensores')
         modulo = Modulo.objects.create(**validated_data)
         
         if sensores:

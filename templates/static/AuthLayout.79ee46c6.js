@@ -1,1 +1,0 @@
-import{_ as t,m as o,r as s,o as r,c as a,b as n}from"./index.4c77faae.js";const c={beforeMount(){this.estaAutenticado&&this.$router.push({name:"modulos-listar"})},computed:{...o(["estaAutenticado"])}};function u(i,p,_,m,d,l){const e=s("router-view");return r(),a("div",null,[n(e)])}const h=t(c,[["render",u]]);export{h as default};
