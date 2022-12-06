@@ -1,8 +1,21 @@
+import datetime
 from rest_framework import serializers
 from .models import Modulo
 from apps.sensor.serializers import SensorSerializer
 from apps.sensor.models import Sensor
 from apps.dato.serializers import DatoSerializer
+
+
+def obtener_rango_fechas():
+    fecha_actual = datetime.date.today()
+    anio = fecha_actual.year
+    mes = fecha_actual.month
+    dia = fecha_actual.day
+    
+    rango_inferior = datetime.datetime(anio, mes, dia, 0, 0 ,0)
+    rango_superior = datetime.datetime(anio, mes, dia, 23, 59 ,59)
+    return rango_inferior, rango_superior
+
 
 
 class ModuloSerializer(serializers.ModelSerializer):
@@ -23,7 +36,7 @@ class ModuloSerializer(serializers.ModelSerializer):
         for sensor in listado_sensores:
             sensor_serializer = SensorSerializer(sensor).data
             sensor_serializer['datos'] = DatoSerializer(
-                sensor.datos.all().order_by('-id'), 
+                sensor.datos.filter(fecha_creacion__range=obtener_rango_fechas()).order_by('-fecha_creacion'), 
                 many=True
             ).data
             sensores.append(sensor_serializer)
@@ -82,6 +95,12 @@ class ModuloSerializer(serializers.ModelSerializer):
             Sensor.objects.bulk_create(
                 [Sensor(modulo=modulo, **sensor) for sensor in sensores_nuevos]
             )
+        else: 
+            sensores_actualizados = []
+            for idx, sensor in enumerate(modulo.sensores.all()):
+                sensor.clave = sensores[idx]['clave']
+                sensores_actualizados.append(sensor)
+            Sensor.objects.bulk_update(sensores_actualizados, ['clave'])
         
         return modulo
     

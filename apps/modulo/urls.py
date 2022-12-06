@@ -3,5 +3,5 @@ from .views import VistaListApiView
 
 
 urlpatterns = [
-    re_path('^pruebas/(?P<valor>.+)/$', VistaListApiView.as_view(), name='pruebas')
+    re_path('^modulos/(?P<mac>.+)/datos/$', VistaListApiView.as_view(), name='pruebas')
 ]

@@ -7,6 +7,7 @@ from rest_framework import status
 from .serializers import ModuloSerializer
 from .models import Modulo
 from apps.dato.models import Dato
+from datetime import datetime
 
 
 class ModuloViewSet(ModelViewSet):
@@ -40,13 +41,11 @@ class VistaListApiView(CreateAPIView):
     queryset = Modulo.objects.all()
     
     def create(self, request, *args, **kwargs):        
-        id_modulo = int(self.kwargs.get('valor'))
+        id_modulo = self.kwargs.get('mac')
         valores = request.data.get('valores')
-        modulo = self.get_queryset().filter(id=id_modulo).first()
+        modulo = self.get_queryset().filter(mac=id_modulo).first()
         sensores = modulo.sensores.all()
         datos = []
-        
-        print('Que pedo razitas')
         
         for valor in valores:            
             dato = Dato(

@@ -106,7 +106,7 @@ TIME_ZONE = 'America/Hermosillo'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 AUTH_USER_MODEL = 'usuario.Usuario'
 
